@@ -23,8 +23,8 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Optional<List<BookResponseDTO>> getBooks() {
-        return Optional.of(bookRepository.findAll().stream()
+    public List<BookResponseDTO> getBooks() {
+        return bookRepository.findAll().stream()
                 .map(book -> new BookResponseDTO(
                                 book.getTitle(),
                                 book.getDescription(),
@@ -37,7 +37,7 @@ public class BookService {
                                         book.getCategory().getName()
                                 )
                         )
-                ).collect(Collectors.toList()));
+                ).collect(Collectors.toList());
     }
 
     public Optional<BookResponseDTO> getBook(Long id) {
