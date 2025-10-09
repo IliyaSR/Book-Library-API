@@ -20,7 +20,7 @@ public class BookController {
 
     @GetMapping("")
     public ResponseEntity<?> getBooks() {
-        if (bookService.getBooks().isPresent()) {
+        if (!bookService.getBooks().isEmpty()) {
             return ResponseEntity.ok(bookService.getBooks());
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
