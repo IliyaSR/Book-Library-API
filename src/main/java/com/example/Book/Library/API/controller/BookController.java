@@ -20,19 +20,11 @@ public class BookController {
 
     @GetMapping("")
     public ResponseEntity<?> getBooks() {
-        if (!bookService.getBooks().isEmpty()) {
-            return ResponseEntity.ok(bookService.getBooks());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return ResponseEntity.ok(bookService.getBooks());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getBookById(@PathVariable Long id) {
-        if (bookService.getBook(id).isPresent()) {
-            return ResponseEntity.ok(bookService.getBook(id));
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return ResponseEntity.ok(bookService.getBook(id));
     }
 }
