@@ -2,10 +2,9 @@ package com.example.Book.Library.API.controller;
 
 import com.example.Book.Library.API.dto.CategoryDTO;
 import com.example.Book.Library.API.entity.Category;
-import com.example.Book.Library.API.service.CategoryService;
+import com.example.Book.Library.API.service.CategoryServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +13,9 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController {
 
-    private final CategoryService categoryService;
+    private final CategoryServiceImpl categoryService;
 
-    CategoryController(CategoryService categoryService) {
+    CategoryController(CategoryServiceImpl categoryService) {
         this.categoryService = categoryService;
     }
 
