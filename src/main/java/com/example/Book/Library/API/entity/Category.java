@@ -22,10 +22,13 @@ public class Category {
     private Long id;
 
     @NotBlank(message = "This field is required!")
-    @Size(min = 2, max = 50)
-    @UniqueElements
+    @Size(min = 2, max = 50, message = "The field must be between 2 and 50 characters")
     private String name;
 
     @OneToMany(mappedBy = "category")
     private List<Book> books;
+
+    public Category(String name) {
+        this.name = name;
+    }
 }
