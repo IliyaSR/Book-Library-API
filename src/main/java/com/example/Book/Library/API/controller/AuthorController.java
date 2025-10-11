@@ -1,26 +1,21 @@
 package com.example.Book.Library.API.controller;
 
-import com.example.Book.Library.API.dto.AuthorDTO;
-import com.example.Book.Library.API.service.AuthorService;
+import com.example.Book.Library.API.service.AuthorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
 
-    private final AuthorService authorService;
+    private final AuthorServiceImpl authorService;
 
     @Autowired
-    AuthorController(AuthorService authorService) {
+    AuthorController(AuthorServiceImpl authorService) {
         this.authorService = authorService;
     }
 
