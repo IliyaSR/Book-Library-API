@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class BookService {
+public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
 
     @Autowired
-    BookService(BookRepository bookRepository) {
+    BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
