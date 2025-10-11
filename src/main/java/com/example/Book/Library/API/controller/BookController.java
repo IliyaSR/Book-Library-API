@@ -1,9 +1,7 @@
 package com.example.Book.Library.API.controller;
 
-import com.example.Book.Library.API.service.BookService;
-import org.hibernate.annotations.NotFound;
+import com.example.Book.Library.API.service.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/books")
 public class BookController {
 
-    private final BookService bookService;
+    private final BookServiceImpl bookService;
 
     @Autowired
-    BookController(BookService bookService) {
+    BookController(BookServiceImpl bookService) {
         this.bookService = bookService;
     }
 
