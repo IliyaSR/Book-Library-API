@@ -4,6 +4,7 @@ import com.example.Book.Library.API.dto.CategoryDTO;
 import com.example.Book.Library.API.entity.Category;
 import com.example.Book.Library.API.service.CategoryServiceImpl;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,12 @@ public class CategoryController {
     @PostMapping("")
     public ResponseEntity<Category> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
         return ResponseEntity.ok(categoryService.createCategory(categoryDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Category> deleteCategory(@Valid @PathVariable Long id) {
+        categoryService.deleteCategory(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }
