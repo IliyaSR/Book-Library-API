@@ -30,4 +30,8 @@ public class Author {
 
     @OneToMany(mappedBy = "author")
     private List<Book> books;
+
+    public String toString() {
+        return String.format("Name of Author: %s", name);
+    }
 }

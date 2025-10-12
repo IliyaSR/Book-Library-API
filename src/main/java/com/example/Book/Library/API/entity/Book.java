@@ -46,4 +46,8 @@ public class Book {
     @ManyToOne
     private Category category;
 
+    public String toString() {
+        return String.format("Name of Book: %s", title);
+    }
+
 }
