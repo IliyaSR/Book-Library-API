@@ -1,13 +1,16 @@
 package com.example.Book.Library.API.service;
 
 import com.example.Book.Library.API.dto.AuthorDTO;
+import com.example.Book.Library.API.entity.Author;
 import com.example.Book.Library.API.exception.ResourceNotFoundException;
 import com.example.Book.Library.API.repository.AuthorRepository;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -26,9 +29,9 @@ public class AuthorServiceImpl implements AuthorService {
                         author.getCountry()
                 )).toList();
 
-        if(authors.isEmpty()){
+        if (authors.isEmpty()) {
             throw new ResourceNotFoundException("No authors found!");
-        }else{
+        } else {
             return authors;
         }
     }
@@ -44,6 +47,25 @@ public class AuthorServiceImpl implements AuthorService {
             return authorDTO;
         } else {
             throw new ResourceNotFoundException("Author not found with id: " + id);
+        }
+    }
+
+    @Override
+    public Author createAuthor(AuthorDTO authorDTO) {
+        try {
+            Author author = new Author(
+                    authorDTO.getName(),
+                    authorDTO.getCountry()
+            );
+
+            return authorRepository.save(author);
+        } catch (ConstraintViolationException ex) {
+            throw new IllegalArgumentException(
+                    ex.getConstraintViolations()
+                            .stream()
+                            .map(ev -> ev.getPropertyPath() + ": " + ev.getMessage())
+                            .collect(Collectors.joining(", "))
+            );
         }
     }
 }
