@@ -31,6 +31,11 @@ public class Author {
     @OneToMany(mappedBy = "author")
     private List<Book> books;
 
+    public Author(String name, String country) {
+        this.name = name;
+        this.country = country;
+    }
+
     public String toString() {
         return String.format("Name of Author: %s", name);
     }
