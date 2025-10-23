@@ -22,7 +22,7 @@ public class Author {
     private Long id;
 
     @NotBlank(message = "This field is required!")
-    @Size(min = 2, max = 60)
+    @Size(min = 2, max = 60, message = "The field must be between 2 and 60 characters!")
     private String name;
 
     @Size(max = 60)
