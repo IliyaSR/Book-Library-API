@@ -85,4 +85,13 @@ public class AuthorServiceImpl implements AuthorService {
 
         return Optional.of(author);
     }
+
+    @Override
+    public void deleteAuthor(Long id) {
+
+        Author author = authorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Category with id " + id + " not found!"));
+
+        authorRepository.delete(author);
+    }
 }
