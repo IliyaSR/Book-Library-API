@@ -7,6 +7,7 @@ import com.example.Book.Library.API.repository.AuthorRepository;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,5 +68,21 @@ public class AuthorServiceImpl implements AuthorService {
                             .collect(Collectors.joining(", "))
             );
         }
+    }
+
+    @Override
+    public Optional<Author> updateAuthor(Long id, AuthorDTO authorDTO) {
+
+        Author author = authorRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("The author doesn't exist!"));
+
+
+        author.setName(authorDTO.getName());
+        author.setCountry(authorDTO.getCountry());
+
+
+        authorRepository.save(author);
+
+        return Optional.of(author);
     }
 }
