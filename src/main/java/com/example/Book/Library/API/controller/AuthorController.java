@@ -2,6 +2,7 @@ package com.example.Book.Library.API.controller;
 
 import com.example.Book.Library.API.dto.AuthorDTO;
 import com.example.Book.Library.API.service.AuthorServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class AuthorController {
         return ResponseEntity.ok(authorService.getAuthors());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getAuthorById(@PathVariable Long id) {
         return ResponseEntity.ok(authorService.getAuthorById(id));
     }
@@ -31,5 +32,10 @@ public class AuthorController {
     @PostMapping("")
     public ResponseEntity<?> createAuthor(@RequestBody AuthorDTO authorDTO) {
         return ResponseEntity.ok(authorService.createAuthor(authorDTO));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateAuthor(@PathVariable Long id, @Valid @RequestBody AuthorDTO authorDTO) {
+        return ResponseEntity.ok(authorService.updateAuthor(id, authorDTO));
     }
 }
