@@ -12,4 +12,5 @@ public interface AuthorService {
     Author createAuthor(AuthorDTO authorDTO);
     Optional<Author> updateAuthor(Long id, AuthorDTO authorDTO);
     void deleteAuthor(Long id);
+    String getAuthorBooks(Long id);
 }

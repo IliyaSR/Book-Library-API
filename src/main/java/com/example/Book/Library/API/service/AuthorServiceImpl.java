@@ -2,6 +2,7 @@ package com.example.Book.Library.API.service;
 
 import com.example.Book.Library.API.dto.AuthorDTO;
 import com.example.Book.Library.API.entity.Author;
+import com.example.Book.Library.API.entity.Book;
 import com.example.Book.Library.API.exception.ResourceNotFoundException;
 import com.example.Book.Library.API.repository.AuthorRepository;
 import jakarta.validation.ConstraintViolationException;
@@ -17,6 +18,11 @@ import java.util.stream.Collectors;
 public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorRepository authorRepository;
+
+    private Author getAuthorByIdOrException(Long id) {
+        return authorRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("The author doesn't exist!"));
+    }
 
     @Autowired
     AuthorServiceImpl(AuthorRepository authorRepository) {
@@ -73,8 +79,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public Optional<Author> updateAuthor(Long id, AuthorDTO authorDTO) {
 
-        Author author = authorRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException("The author doesn't exist!"));
+        Author author = getAuthorByIdOrException(id);
 
 
         author.setName(authorDTO.getName());
@@ -93,5 +98,16 @@ public class AuthorServiceImpl implements AuthorService {
                 .orElseThrow(() -> new ResourceNotFoundException("Category with id " + id + " not found!"));
 
         authorRepository.delete(author);
+    }
+
+    @Override
+    public String getAuthorBooks(Long id) {
+
+        Author author = getAuthorByIdOrException(id);
+
+        return author.getBooks()
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.joining(", "));
     }
 }
