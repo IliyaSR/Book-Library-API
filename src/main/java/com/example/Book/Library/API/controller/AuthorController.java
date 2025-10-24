@@ -29,6 +29,11 @@ public class AuthorController {
         return ResponseEntity.ok(authorService.getAuthorById(id));
     }
 
+    @GetMapping("/{id}/books")
+    public ResponseEntity<String> getAuthorBooks(@PathVariable Long id){
+        return ResponseEntity.ok(authorService.getAuthorBooks(id));
+    }
+
     @PostMapping("")
     public ResponseEntity<?> createAuthor(@RequestBody AuthorDTO authorDTO) {
         return ResponseEntity.ok(authorService.createAuthor(authorDTO));
