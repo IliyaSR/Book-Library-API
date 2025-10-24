@@ -1,10 +1,9 @@
 package com.example.Book.Library.API.entity;
 
+import com.example.Book.Library.API.dto.AuthorDTO;
+import com.example.Book.Library.API.dto.CategoryDTO;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,18 +32,26 @@ public class Book {
     @Size(max = 500)
     private String description;
 
-    @NotBlank(message = "The field is required!")
+    @NotNull(message = "This field is required!")
     @Min(1400)
     @Max(value = CURRENT_YEAR)
     private int publishYear;
 
-    @NotBlank(message = "The field is required! Must have author with this id!")
+    @NotNull(message = "The field is required! Must have author with this id!")
     @ManyToOne
     private Author author;
 
-    @NotBlank(message = "The field is required! Must have category with this id!")
+    @NotNull(message = "The field is required! Must have category with this id!")
     @ManyToOne
     private Category category;
+
+    public Book(String title, String description, int publishYear, Author author, Category category) {
+        this.title = title;
+        this.description = description;
+        this.publishYear = publishYear;
+        this.author = author;
+        this.category = category;
+    }
 
     public String toString() {
         return String.format("Name of Book: %s", title);
