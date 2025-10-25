@@ -5,6 +5,7 @@ import com.example.Book.Library.API.dto.BookResponseDTO;
 import com.example.Book.Library.API.service.BookServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +38,11 @@ public class BookController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody @Valid BookRequestDTO bookRequestDTO) {
         return ResponseEntity.ok(bookService.updateBook(id, bookRequestDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
