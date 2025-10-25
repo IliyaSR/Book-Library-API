@@ -112,4 +112,12 @@ public class BookServiceImpl implements BookService {
 
         return bookDTO;
     }
+
+    @Override
+    public void deleteBook(Long id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("The book not found with id " + id));
+
+        bookRepository.delete(book);
+    }
 }
