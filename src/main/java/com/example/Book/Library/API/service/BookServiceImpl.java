@@ -30,6 +30,7 @@ public class BookServiceImpl implements BookService {
         this.categoryRepository = categoryRepository;
     }
 
+    @Override
     public List<BookResponseDTO> getBooks() {
         List<Book> books = bookRepository.findAll();
 
@@ -53,6 +54,7 @@ public class BookServiceImpl implements BookService {
                 ).collect(Collectors.toList());
     }
 
+    @Override
     public BookResponseDTO getBook(Long id) {
         return bookRepository.findById(id)
                 .map(book -> new BookResponseDTO(
@@ -70,9 +72,10 @@ public class BookServiceImpl implements BookService {
                 .orElseThrow(() -> new ResourceNotFoundException("Book not found with id " + id));
     }
 
+    @Override
     public BookRequestDTO createBook(BookRequestDTO bookDTO) {
 
-        try{
+        try {
             bookRepository.save(
                     new Book(
                             bookDTO.getTitle(),
@@ -87,12 +90,26 @@ public class BookServiceImpl implements BookService {
             );
 
             return bookDTO;
-        }catch (ConstraintViolationException ex){
+        } catch (ConstraintViolationException ex) {
             throw new IllegalArgumentException(ex.getConstraintViolations()
                     .stream()
                     .map(ev -> ev.getPropertyPath() + ": " + ev.getMessage())
                     .collect(Collectors.joining(", "))
             );
         }
+    }
+
+    @Override
+    public BookRequestDTO updateBook(Long id, BookRequestDTO bookDTO) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("The book not found with id " + id));
+
+        book.setTitle(bookDTO.getTitle());
+        book.setDescription(bookDTO.getDescription());
+        book.setPublishYear(bookDTO.getPublishYear());
+
+        bookRepository.save(book);
+
+        return bookDTO;
     }
 }
