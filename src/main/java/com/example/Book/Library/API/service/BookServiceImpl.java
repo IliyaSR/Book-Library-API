@@ -9,6 +9,7 @@ import com.example.Book.Library.API.repository.AuthorRepository;
 import com.example.Book.Library.API.repository.BookRepository;
 import com.example.Book.Library.API.exception.ResourceNotFoundException;
 import com.example.Book.Library.API.repository.CategoryRepository;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,19 +72,27 @@ public class BookServiceImpl implements BookService {
 
     public BookRequestDTO createBook(BookRequestDTO bookDTO) {
 
-        bookRepository.save(
-                new Book(
-                        bookDTO.getTitle(),
-                        bookDTO.getDescription(),
-                        bookDTO.getPublishYear(),
-                        authorRepository.findById(bookDTO.getAuthorId())
-                                .orElseThrow(() -> new ResourceNotFoundException("Author not found with id: " + bookDTO.getAuthorId())),
-                        categoryRepository.findById(bookDTO.getCategoryId())
-                                .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + bookDTO.getCategoryId()))
+        try{
+            bookRepository.save(
+                    new Book(
+                            bookDTO.getTitle(),
+                            bookDTO.getDescription(),
+                            bookDTO.getPublishYear(),
+                            authorRepository.findById(bookDTO.getAuthorId())
+                                    .orElseThrow(() -> new ResourceNotFoundException("Author not found with id: " + bookDTO.getAuthorId())),
+                            categoryRepository.findById(bookDTO.getCategoryId())
+                                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + bookDTO.getCategoryId()))
 
-                )
-        );
+                    )
+            );
 
-        return bookDTO;
+            return bookDTO;
+        }catch (ConstraintViolationException ex){
+            throw new IllegalArgumentException(ex.getConstraintViolations()
+                    .stream()
+                    .map(ev -> ev.getPropertyPath() + ": " + ev.getMessage())
+                    .collect(Collectors.joining(", "))
+            );
+        }
     }
 }
