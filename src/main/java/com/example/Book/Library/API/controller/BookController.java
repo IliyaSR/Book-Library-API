@@ -3,6 +3,7 @@ package com.example.Book.Library.API.controller;
 import com.example.Book.Library.API.dto.BookRequestDTO;
 import com.example.Book.Library.API.dto.BookResponseDTO;
 import com.example.Book.Library.API.service.BookServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,12 @@ public class BookController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> createBook(@RequestBody BookRequestDTO bookDTO){
+    public ResponseEntity<?> createBook(@RequestBody BookRequestDTO bookDTO) {
         return ResponseEntity.ok(bookService.createBook(bookDTO));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody @Valid BookRequestDTO bookRequestDTO) {
+        return ResponseEntity.ok(bookService.updateBook(id, bookRequestDTO));
     }
 }
