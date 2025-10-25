@@ -73,23 +73,36 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookRequestDTO createBook(BookRequestDTO bookDTO) {
+    public BookResponseDTO createBook(BookRequestDTO bookDTO) {
 
         try {
-            bookRepository.save(
-                    new Book(
-                            bookDTO.getTitle(),
-                            bookDTO.getDescription(),
-                            bookDTO.getPublishYear(),
-                            authorRepository.findById(bookDTO.getAuthorId())
-                                    .orElseThrow(() -> new ResourceNotFoundException("Author not found with id: " + bookDTO.getAuthorId())),
-                            categoryRepository.findById(bookDTO.getCategoryId())
-                                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + bookDTO.getCategoryId()))
+            Book savedBook = bookRepository.save(new Book(
+                    bookDTO.getTitle(),
+                    bookDTO.getDescription(),
+                    bookDTO.getPublishYear(),
+                    authorRepository.findById(bookDTO.getAuthorId())
+                            .orElseThrow(() -> new ResourceNotFoundException("Author not found with id: " + bookDTO.getAuthorId())),
+                    categoryRepository.findById(bookDTO.getCategoryId())
+                            .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + bookDTO.getCategoryId()))
+            ));
 
+            BookResponseDTO response = new BookResponseDTO();
+            response.setTitle(savedBook.getTitle());
+            response.setDescription(savedBook.getDescription());
+            response.setPublishYear(savedBook.getPublishYear());
+            response.setAuthor(
+                    new AuthorDTO(
+                            savedBook.getAuthor().getName(),
+                            savedBook.getAuthor().getCountry()
+                    )
+            );
+            response.setCategory(
+                    new CategoryDTO(
+                            savedBook.getCategory().getName()
                     )
             );
 
-            return bookDTO;
+            return response;
         } catch (ConstraintViolationException ex) {
             throw new IllegalArgumentException(ex.getConstraintViolations()
                     .stream()
