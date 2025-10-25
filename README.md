@@ -86,7 +86,7 @@ POST /api/books
   "categoryId": 2
 }
 
-## 🧾 Example JSON (Book)
+📄 Example Response
 {
     "title": "Harry Potter and the Philosopher's Stone",
     "description": "Fantasy novel by J.K. Rowling",
