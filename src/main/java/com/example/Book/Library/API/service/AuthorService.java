@@ -10,7 +10,7 @@ public interface AuthorService {
     List<AuthorDTO> getAuthors();
     Optional<AuthorDTO> getAuthorById(Long id);
     Author createAuthor(AuthorDTO authorDTO);
-    Optional<Author> updateAuthor(Long id, AuthorDTO authorDTO);
+    AuthorDTO updateAuthor(Long id, AuthorDTO authorDTO);
     void deleteAuthor(Long id);
     String getAuthorBooks(Long id);
 }

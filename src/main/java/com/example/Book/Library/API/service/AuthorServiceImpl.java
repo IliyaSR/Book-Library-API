@@ -77,7 +77,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Optional<Author> updateAuthor(Long id, AuthorDTO authorDTO) {
+    public AuthorDTO updateAuthor(Long id, AuthorDTO authorDTO) {
 
         Author author = getAuthorByIdOrException(id);
 
@@ -88,7 +88,7 @@ public class AuthorServiceImpl implements AuthorService {
 
         authorRepository.save(author);
 
-        return Optional.of(author);
+        return authorDTO;
     }
 
     @Override
