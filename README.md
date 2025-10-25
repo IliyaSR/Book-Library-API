@@ -1,13 +1,35 @@
-📚 Book Library API
+# 📚 Book Library API
 
-Book Library API is a RESTful backend application built with Spring Boot for managing books, authors, and categories.
-It demonstrates key backend development concepts such as Spring Data JPA, entity relationships, validation, and RESTful API design.
+**Book Library API** is a RESTful backend application built with **Spring Boot** for managing books, authors, and categories.  
+It demonstrates key backend development concepts such as **Spring Data JPA**, **entity relationships**, **validation**, and **RESTful API design**.
 
-🚀 Features
+---
 
-CRUD operations for Books, Authors, and Categories
-Entity relationships (Author → Book, Category → Book)
-Input validation using Bean Validation
-Global exception handling
-Proper HTTP status codes (200, 201, 204, 400, 404, 409)
-DTO layer to separate API models from database entities
+## 🚀 Features
+- CRUD operations for **Books**, **Authors**, and **Categories**
+- Entity relationships (`Author → Book`, `Category → Book`)
+- Input validation using Bean Validation
+- Global exception handling
+- Proper HTTP status codes (200, 201, 204, 400, 404, 409)
+- DTO layer to separate API models from database entities
+- Optional Swagger UI for API documentation
+
+---
+
+## 🧱 Technologies Used
+
+| Category | Technology |
+|-----------|-------------|
+| Language | Java 17+ |
+| Framework | Spring Boot 3+ |
+| Web | Spring Web |
+| ORM | Spring Data JPA (Hibernate) |
+| Database | PostgreSQL / MySQL |
+| Validation | Jakarta Bean Validation |
+| Utilities | Lombok |
+| Documentation | Springdoc OpenAPI / Swagger UI |
+
+---
+
+## 🗂 Project Structure
+
