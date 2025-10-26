@@ -101,7 +101,9 @@ POST /api/books
     }
 }
 
-## ⚙️ Setup and Run
+---
+
+### ⚙️ Setup and Run
 
 ### 1️⃣ Clone the repository
 ```bash
