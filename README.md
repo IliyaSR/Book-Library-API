@@ -86,24 +86,27 @@ POST /api/books
   "authorId": 1,
   "categoryId": 2
 }
+```
 
-📄 Example Response
+### 📄 Example Response
+```json
 {
-    "title": "Harry Potter and the Philosopher's Stone",
-    "description": "Fantasy novel by J.K. Rowling",
-    "publishYear": 1997,
-    "author": {
-        "name": "J.K. Rowling",
-        "country": "England"
-    },
-    "category": {
-        "name": "Fantasy"
-    }
+  "title": "Harry Potter and the Philosopher's Stone",
+  "description": "Fantasy novel by J.K. Rowling",
+  "publishYear": 1997,
+  "author": {
+    "name": "J.K. Rowling",
+    "country": "England"
+  },
+  "category": {
+    "name": "Fantasy"
+  }
 }
+```
 
 ---
 
-### ⚙️ Setup and Run
+## ⚙️ Setup and Run
 
 ### 1️⃣ Clone the repository
 ```bash
@@ -138,5 +141,12 @@ or start it directly from your IDE (IntelliJ IDEA / Eclipse / VS Code).
 | `400 Bad Request` | Invalid input data |
 | `404 Not Found` | Resource not found |
 | `409 Conflict` | Duplicate or dependent data conflict |
+
+---
+
+## 👨‍💻 Author
+**Your Name**  
+📧 *your.email@example.com*  
+🔗 [GitHub Profile](https://github.com/yourusername)
 
 ---
