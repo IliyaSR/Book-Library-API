@@ -34,12 +34,12 @@ It demonstrates key backend development concepts such as **Spring Data JPA**, **
 ## 🗂 Project Structure
 
 com.example.library
-┣ 📂 controller → REST controllers
-┣ 📂 service → business logic
-┣ 📂 repository → data access layer
-┣ 📂 dto → request/response models
-┣ 📂 entity → JPA entities
-┗ 📂 exception → global error handling
+┣ 📂 controller → REST controllers |
+┣ 📂 service → business logic |
+┣ 📂 repository → data access layer |
+┣ 📂 dto → request/response models |
+┣ 📂 entity → JPA entities |
+┗ 📂 exception → global error handling |
 
 ---
 
