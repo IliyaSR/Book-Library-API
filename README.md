@@ -100,3 +100,41 @@ POST /api/books
         "name": "Fantasy"
     }
 }
+
+## ⚙️ Setup and Run
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/yourusername/book-library-api.git
+cd book-library-api
+```
+
+### 2️⃣ Configure the database
+Edit the `application.properties` (or `.yml`) file:
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/library_db
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
+```
+
+### 3️⃣ Run the application
+```bash
+./mvnw spring-boot:run
+```
+or start it directly from your IDE (IntelliJ IDEA / Eclipse / VS Code).
+
+---
+
+## ✅ HTTP Status Codes
+
+| Code | Meaning |
+|------|----------|
+| `200 OK` | Successful request |
+| `201 Created` | Resource created successfully |
+| `204 No Content` | Resource deleted successfully |
+| `400 Bad Request` | Invalid input data |
+| `404 Not Found` | Resource not found |
+| `409 Conflict` | Duplicate or dependent data conflict |
+
+---
