@@ -145,8 +145,7 @@ or start it directly from your IDE (IntelliJ IDEA / Eclipse / VS Code).
 ---
 
 ## 👨‍💻 Author
-**Your Name**  
-📧 *your.email@example.com*  
-🔗 [GitHub Profile](https://github.com/yourusername)
+**Ilia Raev**  
+📧 *iliaraev02@gmail.com*  
 
 ---
